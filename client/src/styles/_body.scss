@@ -1,0 +1,31 @@
+.body {
+  height: calc(100vh - 60px);
+  width: 100vw;
+  &-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__offers {
+    width: 100vw;
+    height: calc(100vh - 60px);
+  }
+
+  &__map {
+    display: none;
+  }
+}
+
+@include mediaMin(1050px) {
+  .body {
+    &__map {
+      display: block;
+      width: 50vw;
+    }
+    &__offers {
+      // width: 50vw;
+      width: 100vw;
+      height: calc(100vh - 60px);
+    }
+  }
+}

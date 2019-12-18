@@ -1,0 +1,24 @@
+@mixin mediaMin($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+body {
+  font-family: "Oswals", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+
+  &--align-center {
+    align-items: center;
+  }
+}
+
+.font-normal {
+  font-size: 19px;
+  font-weight: 500;
+}

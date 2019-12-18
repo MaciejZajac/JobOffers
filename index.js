@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 const mongoose = require("mongoose");
-// const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/authRoutes");
 
 mongoose.connect(keys.MONGO_URI, {
   useNewUrlParser: true,
@@ -33,7 +33,7 @@ app.get("/api/test", (req, res, next) => {
 //   next();
 // });
 
-// app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
