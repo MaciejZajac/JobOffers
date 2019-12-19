@@ -1,11 +1,11 @@
-import { REGISTER_REQUEST } from "../constants/authConstants";
+import { REGISTER_REQUEST, LOGIN_REQUEST } from "../constants/authConstants";
 
 export const ARegister = user => ({
   type: REGISTER_REQUEST,
   payload: user
 });
 
-export const ARegister = user => ({
+export const ALogin = user => ({
   type: LOGIN_REQUEST,
   payload: user
 });
