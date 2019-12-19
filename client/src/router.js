@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/header/Navbar";
 import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 
 const Router = () => {
   return (
@@ -11,7 +12,7 @@ const Router = () => {
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        {/* <Route exact path="/login" component={Login} /> */}
+        <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route component={NotFound} />
       </Switch>
