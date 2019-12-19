@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ARegister } from "../../actions/authActions";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorArray, setErrorArray] = useState([]);
+
+  const dispatch = useDispatch();
 
   const validate = () => {
     let result = true;
@@ -28,13 +32,12 @@ const Register = () => {
     e.preventDefault();
 
     if (validate()) {
-      console.log("eamil", email);
-      console.log("password", password);
-      console.log("confirm", confirmPassword);
-
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      const newUser = {
+        email,
+        password,
+        confirmPassword
+      };
+      dispatch(ARegister(newUser));
     }
   };
   return (
@@ -56,7 +59,7 @@ const Register = () => {
           className={`login__input ${
             errorArray.includes("password") ? "login__input--error" : ""
           }`}
-          type="text"
+          type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
@@ -67,7 +70,7 @@ const Register = () => {
           className={`login__input ${
             errorArray.includes("confirmPassword") ? "login__input--error" : ""
           }`}
-          type="text"
+          type="password"
           placeholder="Repeat password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}

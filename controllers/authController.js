@@ -3,6 +3,7 @@ const User = require("../models/User");
 const { validationResult } = require("express-validator");
 
 exports.signup = async (req, res, next) => {
+  console.log("req", req);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed.");

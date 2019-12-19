@@ -1,15 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Router from "./router";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useHistory } from "react-router-dom";
 import "./styles/main.scss";
 import { Provider } from "react-redux";
-import store from "./store";
+import configureStore from "./store";
+
+const ConStore = ({ children }) => {
+  const history = useHistory();
+  const store = configureStore({ history });
+
+  return <Provider store={store}>{children}</Provider>;
+};
+
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <ConStore>
       <Router />
-    </BrowserRouter>
-  </Provider>,
+    </ConStore>
+  </BrowserRouter>,
   document.getElementById("root")
 );
