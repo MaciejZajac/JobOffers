@@ -1,6 +1,6 @@
 const express = require("express");
 const { check, body } = require("express-validator");
-
+const User = require("../models/User");
 const router = express.Router();
 const authController = require("../controllers/authController");
 
@@ -18,7 +18,7 @@ router.post(
       })
       .normalizeEmail(),
     body("password", "Please enter a password")
-      .isLength({ min: 5 })
+      .isLength({ min: 4 })
       .isAlphanumeric()
       .trim(),
     body("confirmPassword")

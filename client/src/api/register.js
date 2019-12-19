@@ -4,11 +4,12 @@ export const api =
 
 export const register = user => {
   return new Promise((resolve, reject) => {
-    console.log("user", user);
     fetch(`${api}/auth/signup`, {
       method: "POST",
       body: JSON.stringify(user),
-      "Content-Type": "application/json"
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
       .then(response => {
         return response.json();

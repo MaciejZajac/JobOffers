@@ -3,8 +3,8 @@ const User = require("../models/User");
 const { validationResult } = require("express-validator");
 
 exports.signup = async (req, res, next) => {
-  console.log("req", req);
   const errors = validationResult(req);
+  console.log("errors@@@", errors.isEmpty());
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed.");
     error.statusCode = 422;
@@ -12,7 +12,7 @@ exports.signup = async (req, res, next) => {
     throw error;
   }
 
-  const { email, password, confirmPassword } = req;
+  const { email, password, confirmPassword } = req.body;
 
   console.log("email", email);
   console.log("password", password);
