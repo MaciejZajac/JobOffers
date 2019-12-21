@@ -1,41 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { ALogin } from "../../actions/authActions";
 import { Form, Field } from "react-final-form";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorArray, setErrorArray] = useState([]);
-
   const dispatch = useDispatch();
-
-  const validate = () => {
-    let result = true;
-    let errorArr = [];
-    if (email.length < 4) {
-      result = false;
-      errorArr.push("email");
-    }
-    if (password.length < 4) {
-      result = false;
-      errorArr.push("password");
-    }
-
-    setErrorArray(errorArr);
-    return result;
-  };
   const onSubmit = values => {
-    console.log("values", values);
-    // e.preventDefault();
-
-    // if (validate()) {
-    //   const user = {
-    //     email,
-    //     password
-    //   };
-    //   dispatch(ALogin(user));
-    // }
+    dispatch(ALogin(values));
   };
   return (
     <div className="login">
@@ -64,7 +35,9 @@ const Login = () => {
                     placeholder="Email"
                     className="login__input"
                   />
-                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                  {meta.error && meta.touched && (
+                    <div className="text-red">{meta.error}</div>
+                  )}
                 </div>
               )}
             </Field>
@@ -77,7 +50,9 @@ const Login = () => {
                     placeholder="Password"
                     className="login__input"
                   />
-                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                  {meta.error && meta.touched && (
+                    <div className="text-red">{meta.error}</div>
+                  )}
                 </div>
               )}
             </Field>

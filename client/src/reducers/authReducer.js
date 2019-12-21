@@ -1,7 +1,10 @@
 import {
   REGISTER_REQUEST,
   REGISTER_FAILED,
-  REGISTER_SUCCEDED
+  REGISTER_SUCCEDED,
+  LOGIN_REQUEST,
+  LOGIN_FAILED,
+  LOGIN_SUCCEDED
 } from "../constants/authConstants";
 
 const authReducer = (state = {}, action) => {
@@ -13,6 +16,15 @@ const authReducer = (state = {}, action) => {
       console.log("action", action);
       return state;
     case REGISTER_SUCCEDED:
+      console.log("action", action);
+      return state;
+    case LOGIN_REQUEST:
+      console.log("action", action);
+      return state;
+    case LOGIN_FAILED:
+      console.log("action", action);
+      return state;
+    case LOGIN_SUCCEDED:
       console.log("action", action);
       return state;
     default:

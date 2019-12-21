@@ -1,58 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { ARegister } from "../../actions/authActions";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorArray, setErrorArray] = useState([]);
-
   const dispatch = useDispatch();
 
-  const validate = () => {
-    let result = true;
-    let errorArr = [];
-    if (email.length < 4) {
-      result = false;
-      errorArr.push("email");
-    }
-    if (password.length < 4) {
-      result = false;
-      errorArr.push("password");
-    }
-    if (password !== confirmPassword || confirmPassword.length === 0) {
-      result = false;
-      errorArr.push("confirmPassword");
-    }
-    setErrorArray(errorArr);
-    return result;
+  const handleSubmitReg = values => {
+    dispatch(ARegister(values));
   };
-  const handleRegistration = e => {
-    e.preventDefault();
 
-    if (validate()) {
-      const newUser = {
-        email,
-        password,
-        confirmPassword
-      };
-      dispatch(ARegister(newUser));
-    }
-  };
   return (
     <div className="login">
       <Form
-        onSubmit={handleRegistration}
+        onSubmit={handleSubmitReg}
         validate={values => {
           const errors = {};
-          if (!values.email) {
+          if (!values.email || !values.email.includes("@")) {
             errors.email = "Required";
           }
           if (!values.password) {
             errors.password = "Required";
-          } else if (values.password.length <= 4) {
+          } else if (values.password.length < 4) {
             errors.password = "Password must be atleast 4 digits";
           }
           if (
@@ -64,7 +33,7 @@ const Register = () => {
           return errors;
         }}
         render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
+          <form className="login__form" onSubmit={handleSubmit}>
             <Field name="email">
               {({ input, meta }) => (
                 <div>
@@ -74,7 +43,9 @@ const Register = () => {
                     placeholder="Email"
                     className="login__input"
                   />
-                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                  {meta.error && meta.touched && (
+                    <div className="text-red">{meta.error}</div>
+                  )}
                 </div>
               )}
             </Field>
@@ -87,7 +58,9 @@ const Register = () => {
                     placeholder="Password"
                     className="login__input"
                   />
-                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                  {meta.error && meta.touched && (
+                    <div className="text-red">{meta.error}</div>
+                  )}
                 </div>
               )}
             </Field>
@@ -100,15 +73,13 @@ const Register = () => {
                     placeholder="Confirm Password"
                     className="login__input"
                   />
-                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                  {meta.error && meta.touched && (
+                    <div className="text-red">{meta.error}</div>
+                  )}
                 </div>
               )}
             </Field>
-            <button
-              className="login__btn"
-              type="submit"
-              onClick={handleRegistration}
-            >
+            <button className="login__btn" type="submit" onClick={handleSubmit}>
               Zarejestruj się
             </button>
           </form>
@@ -151,7 +122,7 @@ const Register = () => {
         <button
           className="login__btn"
           type="submit"
-          onClick={handleRegistration}
+          onClick={handleSubmitReg}
         >
           Zarejestruj się
         </button>
