@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Form, Field } from "react-final-form";
 import { ARegister } from "../../actions/authActions";
 
 const Register = () => {
@@ -42,7 +43,78 @@ const Register = () => {
   };
   return (
     <div className="login">
-      <form className="login__form">
+      <Form
+        onSubmit={handleRegistration}
+        validate={values => {
+          const errors = {};
+          if (!values.email) {
+            errors.email = "Required";
+          }
+          if (!values.password) {
+            errors.password = "Required";
+          } else if (values.password.length <= 4) {
+            errors.password = "Password must be atleast 4 digits";
+          }
+          if (
+            !values.confirmPassword ||
+            values.confirmPassword !== values.password
+          ) {
+            errors.confirmPassword = "Passwords must be equal";
+          }
+          return errors;
+        }}
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="email">
+              {({ input, meta }) => (
+                <div>
+                  <input
+                    {...input}
+                    type="email"
+                    placeholder="Email"
+                    className="login__input"
+                  />
+                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="password">
+              {({ input, meta }) => (
+                <div>
+                  <input
+                    {...input}
+                    type="password"
+                    placeholder="Password"
+                    className="login__input"
+                  />
+                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="confirmPassword">
+              {({ input, meta }) => (
+                <div>
+                  <input
+                    {...input}
+                    type="password"
+                    placeholder="Confirm Password"
+                    className="login__input"
+                  />
+                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <button
+              className="login__btn"
+              type="submit"
+              onClick={handleRegistration}
+            >
+              Zarejestruj się
+            </button>
+          </form>
+        )}
+      />
+      {/* <form className="login__form">
         <input
           name="email"
           className={`login__input ${
@@ -83,7 +155,7 @@ const Register = () => {
         >
           Zarejestruj się
         </button>
-      </form>
+      </form> */}
     </div>
   );
 };

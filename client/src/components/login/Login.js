@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ALogin } from "../../actions/authActions";
+import { Form, Field } from "react-final-form";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,21 +25,66 @@ const Login = () => {
     setErrorArray(errorArr);
     return result;
   };
-  const handleLogin = e => {
-    e.preventDefault();
+  const onSubmit = values => {
+    console.log("values", values);
+    // e.preventDefault();
 
-    if (validate()) {
-      const user = {
-        email,
-        password
-      };
-      dispatch(ALogin(user));
-    }
+    // if (validate()) {
+    //   const user = {
+    //     email,
+    //     password
+    //   };
+    //   dispatch(ALogin(user));
+    // }
   };
   return (
     <div className="login">
-      <form className="login__form">
-        <input
+      <Form
+        onSubmit={onSubmit}
+        validate={values => {
+          const errors = {};
+          if (!values.email) {
+            errors.email = "Required";
+          }
+          if (!values.password) {
+            errors.password = "Required";
+          } else if (values.password.length < 4) {
+            errors.password = "Password must be atleast 4 digits";
+          }
+          return errors;
+        }}
+        render={({ handleSubmit }) => (
+          <form className="login__form" onSubmit={handleSubmit}>
+            <Field name="email">
+              {({ input, meta }) => (
+                <div>
+                  <input
+                    {...input}
+                    type="email"
+                    placeholder="Email"
+                    className="login__input"
+                  />
+                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="password">
+              {({ input, meta }) => (
+                <div>
+                  <input
+                    {...input}
+                    type="password"
+                    placeholder="Password"
+                    className="login__input"
+                  />
+                  {meta.error && meta.touched && <div>{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <button className="login__btn" type="submit">
+              Zaloguj się
+            </button>
+            {/* <input
           name="email"
           className={`login__input ${
             errorArray.includes("email") ? "login__input--error" : ""
@@ -62,8 +108,10 @@ const Login = () => {
 
         <button className="login__btn" type="submit" onClick={handleLogin}>
           Zarejestruj się
-        </button>
-      </form>
+        </button> */}
+          </form>
+        )}
+      />
     </div>
   );
 };
