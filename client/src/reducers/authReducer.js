@@ -4,29 +4,30 @@ import {
   REGISTER_SUCCEDED,
   LOGIN_REQUEST,
   LOGIN_FAILED,
-  LOGIN_SUCCEDED
+  LOGIN_SUCCEDED,
+  LOGIN_SESSION,
+  LOGOUT_REQUEST
 } from "../constants/authConstants";
 
 const authReducer = (state = {}, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
-      console.log("action", action);
       return state;
     case REGISTER_FAILED:
-      console.log("action", action);
       return state;
     case REGISTER_SUCCEDED:
-      console.log("action", action);
       return state;
     case LOGIN_REQUEST:
-      console.log("action", action);
       return state;
     case LOGIN_FAILED:
-      console.log("action", action);
       return state;
     case LOGIN_SUCCEDED:
-      console.log("action", action);
-      return state;
+      return { ...state, user: action.response.user };
+    case LOGIN_SESSION:
+      return { ...state, user: action.payload };
+    case LOGOUT_REQUEST:
+      sessionStorage.removeItem("user");
+      return { ...state, user: undefined };
     default:
       return state;
   }

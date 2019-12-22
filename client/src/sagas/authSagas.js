@@ -20,11 +20,12 @@ export function* registerHandler({ payload }) {
 
 export function* loginHandler({ payload }) {
   try {
-    console.log("payload", payload);
     const history = yield getContext("history");
     const response = yield call(login, payload);
-    console.log("response", response);
     yield put({ type: LOGIN_SUCCEDED, response });
+    const user = response.user.user;
+    sessionStorage.setItem("user", JSON.stringify(user));
+    history.push("/dashboard");
   } catch (err) {
     yield put({ type: LOGIN_FAILED, message: err });
   }

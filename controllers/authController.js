@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 const { validationResult } = require("express-validator");
 
 exports.signup = async (req, res, next) => {
   const errors = validationResult(req);
-  console.log("errors@@@", errors.isEmpty());
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed.");
     error.statusCode = 422;
@@ -32,9 +32,8 @@ exports.signup = async (req, res, next) => {
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   const errors = validationResult(req);
-  console.log("errors@@@", errors.isEmpty());
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed.");
     error.statusCode = 422;
@@ -42,31 +41,46 @@ exports.login = async (req, res) => {
     throw error;
   }
 
+  let loadedUser;
+
   const { email, password } = req.body;
+  User.findOne({ email: email })
+    .then(user => {
+      if (!user) {
+        const error = new Error("There is no such email in a database.");
+        throw error;
+      }
 
-  const user = await User.findOne({ email: email });
-  if (!user) {
-    const error = new Error("There is no such email in a database.");
-    throw error;
-  }
+      loadedUser = user;
+      return bcrypt.compare(password, user.password);
+    })
+    .then(isEqual => {
+      if (!isEqual) {
+        const error = new Error("Wrong password.");
+        error.code = 401;
+        throw error;
+      }
+      const token = jwt.sign(
+        {
+          email: loadedUser.email,
+          userId: loadedUser._id.toString()
+        },
+        keys.SECRET_TOKEN,
+        { expiresIn: "1h" }
+      );
 
-  const isEqual = await bcrypt.compare(password, user.password);
-  if (!isEqual) {
-    const error = new Error("Wrong password.");
-    error.code = 401;
-    throw error;
-  }
-  const token = jwt.sign(
-    {
-      email: user.email,
-      userId: user.__id.toString()
-    },
-    "superultrasecretpasswordomglolyolo",
-    { expiresIn: "1h" }
-  );
-  return {
-    email: user.email,
-    token: token,
-    userId: user._id.toString()
-  };
+      res.status(200).json({
+        message: "Log in successful",
+        user: {
+          token: token,
+          userId: loadedUser._id.toString()
+        }
+      });
+    })
+    .catch(err => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
 };

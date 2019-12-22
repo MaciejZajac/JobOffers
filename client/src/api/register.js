@@ -18,7 +18,6 @@ export const register = user => {
         resolve({ user: res });
       })
       .catch(error => {
-        console.log("error", error);
         reject(error.response);
       });
   });
@@ -40,7 +39,6 @@ export const login = user => {
         resolve({ user: res });
       })
       .catch(error => {
-        console.log("error", error);
         reject(error.response);
       });
   });
