@@ -24,17 +24,24 @@ const Navbar = () => {
           </div>
           <div>
             {isAuthenticated ? (
-              <Link to="/" onClick={handleLogout} className="nav__link">
-                Logout
-              </Link>
+              <>
+                <Link to="/dashboard" className="nav__link">
+                  Dashboard
+                </Link>
+                <Link to="/" onClick={handleLogout} className="nav__link">
+                  Logout
+                </Link>
+              </>
             ) : (
-              <Link to="/login" className="nav__link">
-                Log in
-              </Link>
+              <>
+                <Link to="/login" className="nav__link">
+                  Log in
+                </Link>
+                <Link to="/register" className="nav__link">
+                  Register
+                </Link>
+              </>
             )}
-            <Link to="/register" className="nav__link">
-              Register
-            </Link>
           </div>
         </div>
       </nav>

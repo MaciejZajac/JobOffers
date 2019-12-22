@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
-
+const offerRoutes = require("./routes/offerRoutes");
+const isAuth = require("./middleware/isAuth");
 mongoose.connect(keys.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -25,15 +26,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/test", (req, res, next) => {
-  res.status(200).send({
-    message: "hello!"
-  });
+app.use(isAuth);
 
-  next();
-});
 app.use("/api/auth", authRoutes);
-
+app.use("/api/offer", offerRoutes);
 app.use((error, req, res, next) => {
   const status = error.statusCode || 500;
   const message = error.message;

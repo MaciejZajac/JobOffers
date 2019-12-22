@@ -5,7 +5,7 @@ import {
   LOGIN_SUCCEDED,
   LOGIN_FAILED
 } from "../constants/authConstants";
-import { register, login } from "../api/register";
+import { register, login } from "../api/auth";
 
 export function* registerHandler({ payload }) {
   try {

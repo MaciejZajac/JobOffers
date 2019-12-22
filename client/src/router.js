@@ -8,6 +8,7 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import { ALoginSession } from "./actions/authActions";
+import NewJobOffer from "./components/dashboard/NewJobOffer";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Router = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/new-offer" component={NewJobOffer} />
         <Route component={NotFound} />
       </Switch>
     </>
