@@ -21,3 +21,23 @@ export const newOffer = ({ payload, token }) => {
       });
   });
 };
+
+export const getPrivateOffers = ({ token }) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${api}/offer/getPrivateOffers`, {
+      method: "GET",
+      headers: {
+        Authorization: "bearer " + token
+      }
+    })
+      .then(result => {
+        return result.json();
+      })
+      .then(res => {
+        resolve({ offer: res });
+      })
+      .catch(error => {
+        reject(error.response);
+      });
+  });
+};

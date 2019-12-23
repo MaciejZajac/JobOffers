@@ -1,9 +1,11 @@
 import { call, put, getContext, select } from "redux-saga/effects";
 import {
   NEWOFFER_SUCCEDED,
-  NEWOFFER_FAILED
+  NEWOFFER_FAILED,
+  GET_PRIVATE_OFFERS_SUCCEDED,
+  GET_PRIVATE_OFFERS_FAILED
 } from "../constants/offerConstants";
-import { newOffer } from "../api/offer";
+import { newOffer, getPrivateOffers } from "../api/offer";
 import { SToken } from "../selectors";
 
 export function* newOfferHandler({ payload }) {
@@ -15,5 +17,15 @@ export function* newOfferHandler({ payload }) {
     // history.push("/dashboard");
   } catch (err) {
     yield put({ type: NEWOFFER_FAILED, message: err });
+  }
+}
+
+export function* getPrivateOffersHandler() {
+  try {
+    let token = yield select(SToken);
+    const response = yield call(getPrivateOffers, { token });
+    yield put({ type: GET_PRIVATE_OFFERS_SUCCEDED, response });
+  } catch (err) {
+    yield put({ type: GET_PRIVATE_OFFERS_FAILED, message: err });
   }
 }
