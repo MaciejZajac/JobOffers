@@ -22,15 +22,12 @@ const Dashboard = () => {
             offers.map((offer, index) => {
               return (
                 <li key={index}>
-                  {" "}
                   Pozycja: {offer.positionTitle}. <br /> Miasto: {offer.city}{" "}
                 </li>
               );
             })}
         </ul>
       </div>
-      Dashboard!
-      <h1>Dashboard</h1>
     </div>
   );
 };

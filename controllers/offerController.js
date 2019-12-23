@@ -25,6 +25,24 @@ exports.newOffer = async (req, res, next) => {
   });
 };
 
+// PUBLIC
+
+exports.getOffers = async (req, res, next) => {
+  const countDocuments = await Offer.find().countDocuments();
+  const offers = await Offer.find();
+
+  res.status(200).json({
+    totalCount: countDocuments,
+    offers: offers.map(offer => {
+      return {
+        ...offer._doc,
+        _id: offer._id.toString()
+      };
+    })
+  });
+};
+
+// PRIVATE
 exports.getPrivateOffers = async (req, res, next) => {
   if (!req.isAuth) {
     const error = new Error("Not authenticated.");

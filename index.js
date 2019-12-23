@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const offerRoutes = require("./routes/offerRoutes");
 const isAuth = require("./middleware/isAuth");
+
 mongoose.connect(keys.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true

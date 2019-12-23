@@ -22,6 +22,25 @@ export const newOffer = ({ payload, token }) => {
   });
 };
 
+// PUBLIC
+export const getOffers = () => {
+  return new Promise((resolve, reject) => {
+    fetch(`${api}/offer/getOffers`, {
+      method: "GET"
+    })
+      .then(result => {
+        return result.json();
+      })
+      .then(res => {
+        resolve({ offer: res });
+      })
+      .catch(error => {
+        reject(error.response);
+      });
+  });
+};
+
+// PRIVATE
 export const getPrivateOffers = ({ token }) => {
   return new Promise((resolve, reject) => {
     fetch(`${api}/offer/getPrivateOffers`, {
