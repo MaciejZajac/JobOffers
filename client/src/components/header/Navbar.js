@@ -15,42 +15,53 @@ const Navbar = () => {
   };
 
   return (
-    <div class="container">
-      <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <span className="navbar-item">
+    <div
+      style={{
+        boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.4)",
+        marginBottom: "15px"
+      }}
+    >
+      <div className="container">
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            {/* <span className="navbar-item">
             <img
               src="https://bulma.io/images/bulma-logo.png"
               width="112"
               height="28"
             />
-          </span>
+          </span> */}
 
-          <a
-            role="button"
-            className="navbar-burger burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
+            <a
+              role="button"
+              className="navbar-burger burger"
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="navbarBasicExample"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
 
-        <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
-            <Link to="/" className="navbar-item">
-              Home
-            </Link>
-            {isAuthenticated && (
-              <Link to="/dashboard" className="navbar-item">
-                Dashboard
+          <div id="navbarBasicExample" className="navbar-menu">
+            <div className="navbar-start">
+              <Link to="/" className="navbar-item">
+                Home
               </Link>
-            )}
+              {isAuthenticated && (
+                <>
+                  <Link to="/dashboard" className="navbar-item">
+                    Dashboard
+                  </Link>
+                  <Link to="/new-offer" className="navbar-item">
+                    New job offer
+                  </Link>
+                </>
+              )}
 
-            {/* <div className="navbar-item has-dropdown is-hoverable">
+              {/* <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">More</a>
 
             <div className="navbar-dropdown">
@@ -61,36 +72,37 @@ const Navbar = () => {
               <a className="navbar-item">Report an issue</a>
             </div>
           </div> */}
-          </div>
+            </div>
 
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                {isAuthenticated ? (
-                  <>
-                    <Link
-                      to="/"
-                      onClick={handleLogout}
-                      className="button is-primary"
-                    >
-                      Logout
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link to="/register" className="button is-primary">
-                      <strong>Sign up</strong>
-                    </Link>
-                    <Link to="/login" className="button is-light">
-                      Log in
-                    </Link>
-                  </>
-                )}
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  {isAuthenticated ? (
+                    <>
+                      <Link
+                        to="/"
+                        onClick={handleLogout}
+                        className="button is-primary"
+                      >
+                        Logout
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/login" className="button is-primary">
+                        Log in
+                      </Link>
+                      <Link to="/register" className="button is-light">
+                        <strong>Sign up</strong>
+                      </Link>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </div>
 
     // <div>

@@ -11,57 +11,67 @@ const NewJobOffer = () => {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      validate={values => {
-        const errors = {};
-        if (!values.positionTitle) {
-          errors.positionTitle = "Required";
-        }
-        if (!values.city) {
-          errors.city = "Required";
-        }
+    <div className="container">
+      <div class="columns is-mobile is-centered">
+        <div class="column is-one-third">
+          <Form
+            onSubmit={handleSubmit}
+            validate={values => {
+              const errors = {};
+              if (!values.positionTitle) {
+                errors.positionTitle = "Required";
+              }
+              if (!values.city) {
+                errors.city = "Required";
+              }
 
-        return errors;
-      }}
-      render={({ handleSubmit }) => (
-        <form className="form" onSubmit={handleSubmit}>
-          <Field name="positionTitle">
-            {({ input, meta }) => (
-              <div>
-                <input
-                  {...input}
-                  type="text"
-                  placeholder="positionTitle"
-                  className="login__input"
-                />
-                {meta.error && meta.touched && (
-                  <div className="text-red">{meta.error}</div>
-                )}
-              </div>
+              return errors;
+            }}
+            render={({ handleSubmit }) => (
+              <form className="form" onSubmit={handleSubmit}>
+                <Field name="positionTitle">
+                  {({ input, meta }) => (
+                    <div className="field">
+                      <label class="label">Job Title</label>
+                      <input
+                        {...input}
+                        type="text"
+                        placeholder="Job title"
+                        className="input"
+                      />
+                      {meta.error && meta.touched && (
+                        <div className="text-red">{meta.error}</div>
+                      )}
+                    </div>
+                  )}
+                </Field>
+                <Field name="city">
+                  {({ input, meta }) => (
+                    <div className="field">
+                      <label class="label">Miasto</label>
+                      <input
+                        {...input}
+                        type="text"
+                        placeholder="City"
+                        className="input"
+                      />
+                      {meta.error && meta.touched && (
+                        <div className="text-red">{meta.error}</div>
+                      )}
+                    </div>
+                  )}
+                </Field>
+                <div class="control">
+                  <button class="button is-primary" type="submit">
+                    Dodaj ofertę
+                  </button>
+                </div>
+              </form>
             )}
-          </Field>
-          <Field name="city">
-            {({ input, meta }) => (
-              <div>
-                <input
-                  {...input}
-                  type="text"
-                  placeholder="city"
-                  className="login__input"
-                />
-                {meta.error && meta.touched && (
-                  <div className="text-red">{meta.error}</div>
-                )}
-              </div>
-            )}
-          </Field>
-          <button className="login__btn" type="submit">
-            Dodaj ofertę
-          </button>
-        </form>
-      )}
-    />
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

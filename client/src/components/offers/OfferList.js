@@ -1,32 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AGetOffers } from "../../actions/offerActions";
-import { SGetOffers } from "../../selectors";
+import React from "react";
+import OfferListItem from "./OfferListItem";
 
-const OfferList = () => {
-  const dispatch = useDispatch();
-  const offers = useSelector(SGetOffers);
-  useEffect(() => {
-    dispatch(AGetOffers());
-  }, []);
-
+const OfferList = ({ offers }) => {
   return (
-    <div>
-      <div>
-        <div>
-          <ul>
-            {offers &&
-              offers.map((offer, index) => {
-                return (
-                  <li key={index}>
-                    Pozycja: {offer.positionTitle}. <br /> Miasto: {offer.city}{" "}
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
-      </div>
-    </div>
+    <>{offers && offers.map((offer, index) => <OfferListItem key={index} />)}</>
   );
 };
 
