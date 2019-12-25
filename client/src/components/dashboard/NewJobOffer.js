@@ -1,10 +1,12 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ANewOffer } from "../../actions/offerActions";
+import { SIsLoading } from "../../selectors";
 
 const NewJobOffer = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(SIsLoading);
 
   const handleSubmit = offer => {
     dispatch(ANewOffer(offer));
@@ -157,7 +159,10 @@ const NewJobOffer = () => {
                 </Field>
 
                 <div className="control">
-                  <button className="button is-primary" type="submit">
+                  <button
+                    className={`button is-primary ${isLoading && "is-loading"}`}
+                    type="submit"
+                  >
                     Dodaj ofertę
                   </button>
                 </div>

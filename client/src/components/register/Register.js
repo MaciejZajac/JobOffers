@@ -1,10 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { ARegister } from "../../actions/authActions";
+import { SIsAuthLoading } from "../../selectors";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(SIsAuthLoading);
 
   const handleSubmitReg = values => {
     dispatch(ARegister(values));
@@ -85,7 +87,10 @@ const Register = () => {
                   )}
                 </Field>
                 <div className="control">
-                  <button className="button is-primary" type="submit">
+                  <button
+                    className={`button is-primary ${isLoading && "is-loading"}`}
+                    type="submit"
+                  >
                     Register
                   </button>
                 </div>

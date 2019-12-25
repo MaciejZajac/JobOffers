@@ -9,3 +9,7 @@ export const SGetOffers = state => state.offerReducer.offers;
 
 // PRIVATE
 export const SGetPrivateOffers = state => state.offerReducer.privateOffers;
+
+export const SIsLoading = state => state.offerReducer.isLoading;
+
+export const SIsAuthLoading = state => state.authReducer.isLoading;

@@ -1,7 +1,10 @@
 import React from "react";
 import OfferListItem from "./OfferListItem";
 
-const OfferList = ({ offers }) => {
+const OfferList = ({ offers, isLoading }) => {
+  if (isLoading) {
+    return <progress className="progress is-small is-primary" max="100" />;
+  }
   return (
     <>
       {offers ? (

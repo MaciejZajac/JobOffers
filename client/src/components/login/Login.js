@@ -1,10 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ALogin } from "../../actions/authActions";
 import { Form, Field } from "react-final-form";
+import { SIsLoading, SIsAuthLoading } from "../../selectors";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(SIsAuthLoading);
   const onSubmit = values => {
     dispatch(ALogin(values));
   };
@@ -63,7 +65,10 @@ const Login = () => {
                   )}
                 </Field>
                 <div className="control">
-                  <button className="button is-primary" type="submit">
+                  <button
+                    className={`button is-primary ${isLoading && "is-loading"}`}
+                    type="submit"
+                  >
                     Log in
                   </button>
                 </div>
