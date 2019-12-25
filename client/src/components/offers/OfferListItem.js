@@ -1,6 +1,8 @@
 import React from "react";
+import moment from "moment";
 
-const OfferListItem = () => {
+const OfferListItem = ({ offer }) => {
+  console.log("offer", offer);
   return (
     <div className="box">
       <article className="media">
@@ -14,13 +16,37 @@ const OfferListItem = () => {
         </div>
         <div className="media-content">
           <div className="content">
-            <p>
-              <strong>John Smith</strong>
+            <div>
+              <strong>{offer.positionTitle}</strong> for{" "}
+              <strong>{offer.companyName}</strong>
+              <div>
+                <strong className="tag is-primary">{offer.experience}</strong>
+              </div>
               <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              efficitur sit amet massa fringilla egestas. Nullam condimentum
-              luctus turpis.
-            </p>
+              <div>
+                <strong>Miasto:</strong> {offer.city}
+              </div>
+              <div>
+                <strong>Opis firmy</strong>
+                <div>{offer.companyDescription}</div>
+              </div>
+              <div>
+                <strong>Utworzono:</strong>{" "}
+                <span>
+                  {moment(offer.creationDate)
+                    .locale("pl")
+                    .startOf("day")
+                    .fromNow()}
+                </span>
+              </div>
+              <div>
+                <strong>Strona firmy:</strong> <span>{offer.companyPage}</span>
+              </div>
+              <div>
+                <strong>Opis projektu</strong>
+              </div>
+              <div>{offer.projectDescription}</div>
+            </div>
           </div>
         </div>
       </article>

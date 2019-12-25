@@ -5,7 +5,9 @@ const OfferList = ({ offers }) => {
   return (
     <>
       {offers ? (
-        offers.map((offer, index) => <OfferListItem key={index} />)
+        offers.map((offer, index) => (
+          <OfferListItem key={index} offer={offer} />
+        ))
       ) : (
         <div>Nie ma ofert!</div>
       )}
