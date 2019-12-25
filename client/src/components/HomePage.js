@@ -11,18 +11,16 @@ const HomePage = () => {
     dispatch(AGetOffers());
   }, []);
   return (
-    <>
-      <section className="section">
-        <div className="container">
-          <div class="columns is-mobile is-centered">
-            <div class="column is-three-quarters">
-              <h1 className="title">Lista ofert</h1>
-              <OfferList offers={offers} />
-            </div>
+    <section className="section">
+      <div className="container">
+        <div className="columns is-mobile is-centered">
+          <div className="column is-three-quarters">
+            <h1 className="title">Lista ofert</h1>
+            <OfferList offers={offers} />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
     // <div className="body">
     //   <div className="body-container">
     //     <div className="body__offers">

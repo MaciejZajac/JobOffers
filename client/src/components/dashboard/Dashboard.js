@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AGetPrivateOffers } from "../../actions/offerActions";
 import { SGetPrivateOffers } from "../../selectors";
@@ -15,8 +14,8 @@ const Dashboard = () => {
   return (
     <section className="section">
       <div className="container">
-        <div class="columns is-mobile is-centered">
-          <div class="column is-three-quarters">
+        <div className="columns is-mobile is-centered">
+          <div className="column is-three-quarters">
             <h1 className="title">Lista ofert</h1>
             <OfferList offers={offers} />
           </div>

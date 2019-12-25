@@ -10,8 +10,8 @@ const Login = () => {
   };
   return (
     <div className="container">
-      <div class="columns is-mobile is-centered">
-        <div class="column is-one-third">
+      <div className="columns is-mobile is-centered">
+        <div className="column is-one-third">
           <Form
             onSubmit={onSubmit}
             validate={values => {
@@ -31,8 +31,8 @@ const Login = () => {
                 <Field name="email">
                   {({ input, meta }) => (
                     <div className="field">
-                      <label class="label">Email</label>
-                      <div class="control">
+                      <label className="label">Email</label>
+                      <div className="control">
                         <input
                           {...input}
                           type="email"
@@ -49,7 +49,7 @@ const Login = () => {
                 <Field name="password">
                   {({ input, meta }) => (
                     <div className="field">
-                      <label class="label">Password</label>
+                      <label className="label">Password</label>
                       <input
                         {...input}
                         type="password"
@@ -62,8 +62,8 @@ const Login = () => {
                     </div>
                   )}
                 </Field>
-                <div class="control">
-                  <button class="button is-primary" type="submit">
+                <div className="control">
+                  <button className="button is-primary" type="submit">
                     Log in
                   </button>
                 </div>

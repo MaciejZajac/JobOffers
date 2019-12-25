@@ -8,11 +8,29 @@ exports.newOffer = async (req, res, next) => {
     throw error;
   }
 
-  const { positionTitle, city } = req.body;
+  const {
+    positionTitle,
+    city,
+    companyName,
+    experience,
+    companyDescription,
+    projectDescription,
+    companyPage
+  } = req.body;
 
   const user = await User.findById(req.userId);
-
-  const offer = new Offer({ positionTitle, city, creator: user });
+  const creationDate = new Date().toISOString();
+  const offer = new Offer({
+    positionTitle,
+    city,
+    companyName,
+    experience,
+    companyDescription,
+    projectDescription,
+    companyPage,
+    creationDate,
+    creator: user
+  });
 
   const createdOffer = await offer.save();
   user.offers.push(createdOffer);

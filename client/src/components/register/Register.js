@@ -12,8 +12,8 @@ const Register = () => {
 
   return (
     <div className="container">
-      <div class="columns is-mobile is-centered">
-        <div class="column is-one-third">
+      <div className="columns is-mobile is-centered">
+        <div className="column is-one-third">
           <Form
             onSubmit={handleSubmitReg}
             validate={values => {
@@ -39,7 +39,7 @@ const Register = () => {
                 <Field name="email">
                   {({ input, meta }) => (
                     <div className="field">
-                      <label class="label">Email</label>
+                      <label className="label">Email</label>
                       <input
                         {...input}
                         type="email"
@@ -55,7 +55,7 @@ const Register = () => {
                 <Field name="password">
                   {({ input, meta }) => (
                     <div className="field">
-                      <label class="label">Password</label>
+                      <label className="label">Password</label>
                       <input
                         {...input}
                         type="password"
@@ -71,7 +71,7 @@ const Register = () => {
                 <Field name="confirmPassword">
                   {({ input, meta }) => (
                     <div className="field">
-                      <label class="label">Confirm Password</label>
+                      <label className="label">Confirm Password</label>
                       <input
                         {...input}
                         type="password"
@@ -84,8 +84,8 @@ const Register = () => {
                     </div>
                   )}
                 </Field>
-                <div class="control">
-                  <button class="button is-primary" type="submit">
+                <div className="control">
+                  <button className="button is-primary" type="submit">
                     Register
                   </button>
                 </div>

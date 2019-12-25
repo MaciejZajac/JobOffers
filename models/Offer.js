@@ -10,6 +10,30 @@ const offerSchema = new Schema({
     type: String,
     required: true
   },
+  companyName: {
+    type: String,
+    required: true
+  },
+  experience: {
+    type: String,
+    required: true
+  },
+  companyDescription: {
+    type: String,
+    required: true
+  },
+  projectDescription: {
+    type: String,
+    required: true
+  },
+  companyPage: {
+    type: String,
+    required: true
+  },
+  creationDate: {
+    type: String,
+    required: true
+  },
   creator: [
     {
       type: Schema.Types.ObjectId,
