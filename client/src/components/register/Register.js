@@ -11,81 +11,88 @@ const Register = () => {
   };
 
   return (
-    <div className="login">
-      <Form
-        onSubmit={handleSubmitReg}
-        validate={values => {
-          const errors = {};
-          if (!values.email || !values.email.includes("@")) {
-            errors.email = "Required";
-          }
-          if (!values.password) {
-            errors.password = "Required";
-          } else if (values.password.length < 4) {
-            errors.password = "Password must be atleast 4 digits";
-          }
-          if (
-            !values.confirmPassword ||
-            values.confirmPassword !== values.password
-          ) {
-            errors.confirmPassword = "Passwords must be equal";
-          }
-          return errors;
-        }}
-        render={({ handleSubmit }) => (
-          <form className="login__form" onSubmit={handleSubmit}>
-            <Field name="email">
-              {({ input, meta }) => (
-                <div>
-                  <input
-                    {...input}
-                    type="email"
-                    placeholder="Email"
-                    className="login__input"
-                  />
-                  {meta.error && meta.touched && (
-                    <div className="text-red">{meta.error}</div>
+    <div className="container">
+      <div class="columns is-mobile is-centered">
+        <div class="column is-one-third">
+          <Form
+            onSubmit={handleSubmitReg}
+            validate={values => {
+              const errors = {};
+              if (!values.email || !values.email.includes("@")) {
+                errors.email = "Required";
+              }
+              if (!values.password) {
+                errors.password = "Required";
+              } else if (values.password.length < 4) {
+                errors.password = "Password must be atleast 4 digits";
+              }
+              if (
+                !values.confirmPassword ||
+                values.confirmPassword !== values.password
+              ) {
+                errors.confirmPassword = "Passwords must be equal";
+              }
+              return errors;
+            }}
+            render={({ handleSubmit }) => (
+              <form className="login__form" onSubmit={handleSubmit}>
+                <Field name="email">
+                  {({ input, meta }) => (
+                    <div className="field">
+                      <label class="label">Email</label>
+                      <input
+                        {...input}
+                        type="email"
+                        placeholder="Email"
+                        className="input"
+                      />
+                      {meta.error && meta.touched && (
+                        <div className="text-red">{meta.error}</div>
+                      )}
+                    </div>
                   )}
-                </div>
-              )}
-            </Field>
-            <Field name="password">
-              {({ input, meta }) => (
-                <div>
-                  <input
-                    {...input}
-                    type="password"
-                    placeholder="Password"
-                    className="login__input"
-                  />
-                  {meta.error && meta.touched && (
-                    <div className="text-red">{meta.error}</div>
+                </Field>
+                <Field name="password">
+                  {({ input, meta }) => (
+                    <div className="field">
+                      <label class="label">Password</label>
+                      <input
+                        {...input}
+                        type="password"
+                        placeholder="Password"
+                        className="input"
+                      />
+                      {meta.error && meta.touched && (
+                        <div className="text-red">{meta.error}</div>
+                      )}
+                    </div>
                   )}
-                </div>
-              )}
-            </Field>
-            <Field name="confirmPassword">
-              {({ input, meta }) => (
-                <div>
-                  <input
-                    {...input}
-                    type="password"
-                    placeholder="Confirm Password"
-                    className="login__input"
-                  />
-                  {meta.error && meta.touched && (
-                    <div className="text-red">{meta.error}</div>
+                </Field>
+                <Field name="confirmPassword">
+                  {({ input, meta }) => (
+                    <div className="field">
+                      <label class="label">Confirm Password</label>
+                      <input
+                        {...input}
+                        type="password"
+                        placeholder="Confirm Password"
+                        className="input"
+                      />
+                      {meta.error && meta.touched && (
+                        <div className="text-red">{meta.error}</div>
+                      )}
+                    </div>
                   )}
+                </Field>
+                <div class="control">
+                  <button class="button is-primary" type="submit">
+                    Register
+                  </button>
                 </div>
-              )}
-            </Field>
-            <button className="login__btn" type="submit" onClick={handleSubmit}>
-              Zarejestruj się
-            </button>
-          </form>
-        )}
-      />
-      {/* <form className="login__form">
+              </form>
+            )}
+          />
+          {/* <form className="login__form">
         <input
           name="email"
           className={`login__input ${
@@ -127,6 +134,8 @@ const Register = () => {
           Zarejestruj się
         </button>
       </form> */}
+        </div>
+      </div>
     </div>
   );
 };

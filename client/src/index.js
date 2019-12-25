@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import Router from "./router";
 import { BrowserRouter, useHistory } from "react-router-dom";
 import "./styles/main.scss";
+import "bulma/css/bulma.css";
+
 import { Provider } from "react-redux";
 import configureStore from "./store";
 

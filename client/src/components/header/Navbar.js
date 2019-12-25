@@ -1,139 +1,128 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { SIsAuthenticated } from "../../selectors";
 import { ALogout } from "../../actions/authActions";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import { Link } from "react-router-dom";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1
-  }
-}));
+import { Button } from "reactbulma";
 
 const Navbar = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const isAuthenticated = true; //useSelector(SIsAuthenticated);
+  const isAuthenticated = useSelector(SIsAuthenticated);
 
   const handleLogout = () => {
     dispatch(ALogout());
   };
 
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            <Link to="/">Home</Link>
-          </Typography>
+    <div class="container">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <span className="navbar-item">
+            <img
+              src="https://bulma.io/images/bulma-logo.png"
+              width="112"
+              height="28"
+            />
+          </span>
 
-          {isAuthenticated && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem
-                  component={Link}
-                  to="/dashboard"
-                  onClick={handleClose}
-                >
-                  Dashboard
-                </MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-      {/* <nav className="nav">
-        <div className="nav-container">
-          <div>
-            <Link to="/" className="nav__logo">
-              Into.IT
+          <a
+            role="button"
+            className="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <Link to="/" className="navbar-item">
+              Home
             </Link>
-          </div>
-          <div>
-            {isAuthenticated ? (
-              <>
-                <Link to="/dashboard" className="nav__link">
-                  Dashboard
-                </Link>
-                <Link to="/" onClick={handleLogout} className="nav__link">
-                  Logout
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="nav__link">
-                  Log in
-                </Link>
-                <Link to="/register" className="nav__link">
-                  Register
-                </Link>
-              </>
+            {isAuthenticated && (
+              <Link to="/dashboard" className="navbar-item">
+                Dashboard
+              </Link>
             )}
+
+            {/* <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link">More</a>
+
+            <div className="navbar-dropdown">
+              <a className="navbar-item">About</a>
+              <a className="navbar-item">Jobs</a>
+              <a className="navbar-item">Contact</a>
+              <hr className="navbar-divider" />
+              <a className="navbar-item">Report an issue</a>
+            </div>
+          </div> */}
+          </div>
+
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      to="/"
+                      onClick={handleLogout}
+                      className="button is-primary"
+                    >
+                      Logout
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/register" className="button is-primary">
+                      <strong>Sign up</strong>
+                    </Link>
+                    <Link to="/login" className="button is-light">
+                      Log in
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </nav> */}
+      </nav>
     </div>
+
+    // <div>
+    //   <nav className="nav">
+    //     <div className="nav-container">
+    //       <div>
+    //         <Link to="/" className="nav__logo">
+    //           Into.IT
+    //         </Link>
+    //       </div>
+    //       <div>
+    //         {isAuthenticated ? (
+    //           <>
+    //             <Link to="/dashboard">Dashboard</Link>
+    //             <Link to="/" onClick={handleLogout}>
+    //               Logout
+    //             </Link>
+    //           </>
+    //         ) : (
+    //           <>
+    //             <Button white>
+    //               <Link to="/login">Log in</Link>
+    //             </Button>
+    //             <Button white>
+    //               <Link to="/register">Register</Link>
+    //             </Button>
+    //           </>
+    //         )}
+    //       </div>
+    //     </div>
+    //   </nav>
+    // </div>
   );
 };
 

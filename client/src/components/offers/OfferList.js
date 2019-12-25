@@ -11,9 +11,9 @@ const OfferList = () => {
   }, []);
 
   return (
-    <div className="offer">
-      <div className="offer-container">
-        <div style={{ display: "flex", justifyContent: "center" }}>
+    <div>
+      <div>
+        <div>
           <ul>
             {offers &&
               offers.map((offer, index) => {
