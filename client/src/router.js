@@ -6,9 +6,9 @@ import NotFound from "./components/NotFound";
 import Navbar from "./components/header/Navbar";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
-import Dashboard from "./components/dashboard/Dashboard";
 import { ALoginSession } from "./actions/authActions";
-import NewJobOffer from "./components/dashboard/NewJobOffer";
+import Panel from "./components/dashboard/Dashboard";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -24,8 +24,9 @@ const Router = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/new-offer" component={NewJobOffer} />
+
+        <Route path="/dashboard" component={Dashboard} />
+        {/* <Route exact path="/new-offer" component={NewJobOffer} /> */}
         <Route component={NotFound} />
       </Switch>
     </>

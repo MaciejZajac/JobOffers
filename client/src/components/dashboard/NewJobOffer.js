@@ -14,8 +14,8 @@ const NewJobOffer = () => {
 
   return (
     <div className="container">
-      <div className="columns is-mobile is-centered">
-        <div className="column is-one-third">
+      <div className="columns ">
+        <div className="column">
           <Form
             onSubmit={handleSubmit}
             validate={values => {
@@ -46,71 +46,90 @@ const NewJobOffer = () => {
             }}
             render={({ handleSubmit }) => (
               <form className="form" onSubmit={handleSubmit}>
-                <Field name="positionTitle">
-                  {({ input, meta }) => (
-                    <div className="field">
-                      <label className="label">Job Title</label>
-                      <input
-                        {...input}
-                        type="text"
-                        placeholder="Job title"
-                        className={`input  ${meta.error &&
-                          meta.touched &&
-                          "is-danger"} ${!meta.error && " is-primary "}`}
-                      />
-                    </div>
-                  )}
-                </Field>
-                <Field name="city">
-                  {({ input, meta }) => (
-                    <div className="field">
-                      <label className="label">Miasto</label>
-                      <input
-                        {...input}
-                        type="text"
-                        placeholder="City"
-                        className={`input  ${meta.error &&
-                          meta.touched &&
-                          "is-danger"} ${!meta.error && " is-primary "}`}
-                      />
-                    </div>
-                  )}
-                </Field>
-                <Field name="companyName">
-                  {({ input, meta }) => (
-                    <div className="field">
-                      <label className="label">Company name</label>
-                      <input
-                        {...input}
-                        type="text"
-                        placeholder="companyName"
-                        className={`input  ${meta.error &&
-                          meta.touched &&
-                          "is-danger"} ${!meta.error && " is-primary "}`}
-                      />
-                    </div>
-                  )}
-                </Field>
-                <Field name="experience" component="select">
-                  {({ input, meta }) => (
-                    <div className="field">
-                      <label className="label">Experience</label>
-                      <div
-                        className={`select is-small  ${meta.error &&
-                          meta.touched &&
-                          "is-danger"} ${!meta.error && " is-primary "}`}
-                      >
-                        <select {...input} placeholder="experience">
-                          <option />
-                          <option value="internship">Internship</option>
-                          <option value="junior">Junior</option>
-                          <option value="mid">Mid</option>
-                          <option value="senior">Senior</option>
-                        </select>
+                <div className="columns">
+                  <Field name="positionTitle">
+                    {({ input, meta }) => (
+                      <div className="field column">
+                        <label className="label">Job Title</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="Job title"
+                          className={`input  ${meta.error &&
+                            meta.touched &&
+                            "is-danger"} ${!meta.error && " is-primary "}`}
+                        />
                       </div>
-                    </div>
-                  )}
-                </Field>
+                    )}
+                  </Field>
+                  <Field name="companyName">
+                    {({ input, meta }) => (
+                      <div className="field column">
+                        <label className="label">Company name</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="companyName"
+                          className={`input  ${meta.error &&
+                            meta.touched &&
+                            "is-danger"} ${!meta.error && " is-primary "}`}
+                        />
+                      </div>
+                    )}
+                  </Field>
+                  <Field name="city">
+                    {({ input, meta }) => (
+                      <div className="field column">
+                        <label className="label">Miasto</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="City"
+                          className={`input  ${meta.error &&
+                            meta.touched &&
+                            "is-danger"} ${!meta.error && " is-primary "}`}
+                        />
+                      </div>
+                    )}
+                  </Field>
+                </div>
+                <div className="columns">
+                  <Field name="companyPage">
+                    {({ input, meta }) => (
+                      <div className="field column">
+                        <label className="label">Company page</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="companyPage"
+                          className={`input  ${meta.error &&
+                            meta.touched &&
+                            "is-danger"} ${!meta.error && " is-primary "}`}
+                        />
+                      </div>
+                    )}
+                  </Field>
+                  <Field name="experience" component="select">
+                    {({ input, meta }) => (
+                      <div className="field column">
+                        <label className="label">Experience</label>
+                        <div
+                          className={`select  ${meta.error &&
+                            meta.touched &&
+                            "is-danger"} ${!meta.error && " is-primary "}`}
+                        >
+                          <select {...input} placeholder="experience">
+                            <option />
+                            <option value="internship">Internship</option>
+                            <option value="junior">Junior</option>
+                            <option value="mid">Mid</option>
+                            <option value="senior">Senior</option>
+                          </select>
+                        </div>
+                      </div>
+                    )}
+                  </Field>
+                </div>
                 <Field name="companyDescription">
                   {({ input, meta }) => (
                     <div className="field">
@@ -136,21 +155,6 @@ const NewJobOffer = () => {
                         type="text"
                         placeholder="projectDescription"
                         className={`textarea  ${meta.error &&
-                          meta.touched &&
-                          "is-danger"} ${!meta.error && " is-primary "}`}
-                      />
-                    </div>
-                  )}
-                </Field>
-                <Field name="companyPage">
-                  {({ input, meta }) => (
-                    <div className="field">
-                      <label className="label">Company page</label>
-                      <input
-                        {...input}
-                        type="text"
-                        placeholder="companyPage"
-                        className={`input  ${meta.error &&
                           meta.touched &&
                           "is-danger"} ${!meta.error && " is-primary "}`}
                       />

@@ -55,9 +55,6 @@ const Navbar = () => {
                   <Link to="/dashboard" className="navbar-item">
                     Dashboard
                   </Link>
-                  <Link to="/new-offer" className="navbar-item">
-                    New job offer
-                  </Link>
                 </>
               )}
 
