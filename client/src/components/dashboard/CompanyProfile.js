@@ -9,7 +9,6 @@ const CompanyProfile = () => {
   const dispatch = useDispatch(ACompanyProfile);
 
   const handleSubmit = values => {
-    console.log("values", values);
     dispatch(ACompanyProfile(values));
   };
   return (

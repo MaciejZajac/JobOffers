@@ -20,6 +20,7 @@ exports.postNewOffer = async (req, res, next) => {
   } = req.body;
 
   const user = await User.findById(req.userId);
+  const companyProfile = await CompanyProfile.findOne({ creator: user });
   const creationDate = new Date().toISOString();
   const offer = new Offer({
     positionTitle,
@@ -30,6 +31,7 @@ exports.postNewOffer = async (req, res, next) => {
     projectDescription,
     companyPage,
     creationDate,
+    companyProfile: companyProfile,
     creator: user
   });
 
@@ -77,12 +79,28 @@ exports.postCompanyProfile = async (req, res, next) => {
   });
 };
 
+exports.getCompanyProfile = async (req, res, next) => {
+  const { companyName } = req.params;
+  const profile = await CompanyProfile.findOne({ companyName });
+  if (!profile) {
+    res.status(200).json({
+      profile: undefined
+    });
+  } else {
+    res.status(200).json({
+      profile: {
+        ...profile._doc,
+        _id: profile._id.toString()
+      }
+    });
+  }
+};
+
 // PUBLIC
 
 exports.getOffers = async (req, res, next) => {
   const countDocuments = await Offer.find().countDocuments();
-  const offers = await Offer.find();
-
+  const offers = await Offer.find().populate("companyProfile");
   res.status(200).json({
     totalCount: countDocuments,
     offers: offers.map(offer => {

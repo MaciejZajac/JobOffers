@@ -7,12 +7,12 @@ import Navbar from "./components/header/Navbar";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import { ALoginSession } from "./actions/authActions";
-import Panel from "./components/dashboard/Dashboard";
 import Dashboard from "./components/dashboard/Dashboard";
+import Profile from "./components/company/Profile";
 
 const Router = () => {
   const dispatch = useDispatch();
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   if (user) {
     dispatch(ALoginSession(user));
   }
@@ -22,6 +22,7 @@ const Router = () => {
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/profile/:profileName" component={Profile} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
 

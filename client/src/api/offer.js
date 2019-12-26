@@ -22,6 +22,23 @@ export const newOffer = ({ payload, token }) => {
   });
 };
 
+export const getCompanyProfile = ({ payload }) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${api}/offer/companyProfile/${payload}`, {
+      method: "GET"
+    })
+      .then(result => {
+        return result.json();
+      })
+      .then(res => {
+        resolve({ offer: res });
+      })
+      .catch(error => {
+        reject(error.response);
+      });
+  });
+};
+
 export const companyProfile = ({ payload, token }) => {
   return new Promise((resolve, reject) => {
     fetch(`${api}/offer/companyProfile`, {

@@ -10,11 +10,25 @@ import {
   POST_NEWOFFER_SUCCEDED,
   POST_COMPANY_PROFILE_REQUEST,
   POST_COMPANY_PROFILE_SUCCEDED,
-  POST_COMPANY_PROFILE_FAILED
+  POST_COMPANY_PROFILE_FAILED,
+  GET_COMPANY_PROFILE_REQUEST,
+  GET_COMPANY_PROFILE_SUCCEDED,
+  GET_COMPANY_PROFILE_FAILED
 } from "../constants/offerConstants";
 
 const offerReducer = (state = {}, action) => {
   switch (action.type) {
+    case GET_COMPANY_PROFILE_REQUEST:
+      return { ...state, isLoading: true };
+    case GET_COMPANY_PROFILE_SUCCEDED:
+      return {
+        ...state,
+        profile: action.response.offer.profile,
+        isLoading: false
+      };
+    case GET_COMPANY_PROFILE_FAILED:
+      return { ...state, isLoading: false };
+
     case POST_NEWOFFER_REQUEST:
       return { ...state, isLoading: true };
     case POST_NEWOFFER_SUCCEDED:

@@ -31,15 +31,13 @@ const offerSchema = new Schema({
     required: true
   },
   creationDate: {
-    type: String,
-    required: true
+    type: Date,
+    default: Date.now
   },
-  creator: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ]
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
 });
 
 module.exports = mongoose.model("Offer", offerSchema);

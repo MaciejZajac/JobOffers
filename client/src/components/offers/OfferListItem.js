@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const OfferListItem = ({ offer }) => {
-  console.log("offer", offer);
   return (
     <div className="box">
       <article className="media">
@@ -21,6 +21,15 @@ const OfferListItem = ({ offer }) => {
               <strong>{offer.companyName}</strong>
               <div>
                 <strong className="tag is-primary">{offer.experience}</strong>
+              </div>
+              <br />
+              <div>
+                <Link
+                  to={`/profile/${offer.companyName}`}
+                  className="button is-primary is-small"
+                >
+                  <strong>About Company</strong>
+                </Link>
               </div>
               <br />
               <div>

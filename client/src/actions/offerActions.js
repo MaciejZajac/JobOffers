@@ -2,7 +2,8 @@ import {
   POST_NEWOFFER_REQUEST,
   GET_PRIVATE_OFFERS_REQUEST,
   GET_OFFERS_REQUEST,
-  POST_COMPANY_PROFILE_REQUEST
+  POST_COMPANY_PROFILE_REQUEST,
+  GET_COMPANY_PROFILE_REQUEST
 } from "../constants/offerConstants";
 
 export const ANewOffer = offer => ({
@@ -13,6 +14,11 @@ export const ANewOffer = offer => ({
 export const ACompanyProfile = profile => ({
   type: POST_COMPANY_PROFILE_REQUEST,
   payload: profile
+});
+
+export const AGetCompanyProfile = companyName => ({
+  type: GET_COMPANY_PROFILE_REQUEST,
+  payload: companyName
 });
 
 //public

@@ -4,6 +4,8 @@ export const SToken = state => state.authReducer.user.token;
 
 export const SGetUser = state => state.authReducer.user;
 
+export const SGetCompanyProfile = state => state.offerReducer.profile;
+
 // PUBLIC
 export const SGetOffers = state => state.offerReducer.offers;
 

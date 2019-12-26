@@ -7,13 +7,16 @@ import {
   POST_NEWOFFER_SUCCEDED,
   POST_NEWOFFER_FAILED,
   POST_COMPANY_PROFILE_FAILED,
-  POST_COMPANY_PROFILE_SUCCEDED
+  POST_COMPANY_PROFILE_SUCCEDED,
+  GET_COMPANY_PROFILE_FAILED,
+  GET_COMPANY_PROFILE_SUCCEDED
 } from "../constants/offerConstants";
 import {
   newOffer,
   getPrivateOffers,
   getOffers,
-  companyProfile
+  companyProfile,
+  getCompanyProfile
 } from "../api/offer";
 import { SToken } from "../selectors";
 
@@ -38,6 +41,15 @@ export function* profileHandler({ payload }) {
     history.push("/dashboard");
   } catch (err) {
     yield put({ type: POST_COMPANY_PROFILE_FAILED, message: err });
+  }
+}
+
+export function* getProfileHandler({ payload }) {
+  try {
+    const response = yield call(getCompanyProfile, { payload });
+    yield put({ type: GET_COMPANY_PROFILE_SUCCEDED, response });
+  } catch (err) {
+    yield put({ type: GET_COMPANY_PROFILE_FAILED, message: err });
   }
 }
 

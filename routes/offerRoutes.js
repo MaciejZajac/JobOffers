@@ -48,6 +48,8 @@ router.post(
   ],
   offerController.postCompanyProfile
 );
+
+router.get("/companyProfile/:companyName", offerController.getCompanyProfile);
 router.get("/getPrivateOffers", offerController.getPrivateOffers);
 router.get("/getOffers", offerController.getOffers);
 module.exports = router;
