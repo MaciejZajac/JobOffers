@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { SIsAuthenticated } from "../../selectors";
 import { ALogout } from "../../actions/authActions";
-import { Button } from "reactbulma";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-
+  const [isActive, setIsActive] = useState(false);
   const isAuthenticated = useSelector(SIsAuthenticated);
-
+  const handleMenuChange = () => {
+    setIsActive(!isActive);
+  };
   const handleLogout = () => {
+    setIsActive(false);
     dispatch(ALogout());
   };
 
@@ -24,17 +26,17 @@ const Navbar = () => {
       <div className="container">
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            {/* <span className="navbar-item">
-            <img
-              src="https://bulma.io/images/bulma-logo.png"
-              width="112"
-              height="28"
-            />
-          </span> */}
+            <Link
+              to="/"
+              className="navbar-item"
+              onClick={() => setIsActive(false)}
+            >
+              Home
+            </Link>
 
-            <a
-              role="button"
-              className="navbar-burger burger"
+            <button
+              className={`navbar-burger burger ${isActive && "is-active"}`}
+              onClick={() => handleMenuChange()}
               aria-label="menu"
               aria-expanded="false"
               data-target="navbarBasicExample"
@@ -42,17 +44,21 @@ const Navbar = () => {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </a>
+            </button>
           </div>
 
-          <div id="navbarBasicExample" className="navbar-menu">
+          <div
+            id="navbarBasicExample"
+            className={`navbar-menu ${isActive && "is-active"}`}
+          >
             <div className="navbar-start">
-              <Link to="/" className="navbar-item">
-                Home
-              </Link>
               {isAuthenticated && (
                 <>
-                  <Link to="/dashboard" className="navbar-item">
+                  <Link
+                    to="/dashboard"
+                    className="navbar-item"
+                    onClick={() => setIsActive(false)}
+                  >
                     Dashboard
                   </Link>
                 </>
@@ -86,10 +92,18 @@ const Navbar = () => {
                     </>
                   ) : (
                     <>
-                      <Link to="/login" className="button is-primary">
+                      <Link
+                        to="/login"
+                        className="button is-primary"
+                        onClick={() => setIsActive(false)}
+                      >
                         Log in
                       </Link>
-                      <Link to="/register" className="button is-light">
+                      <Link
+                        to="/register"
+                        className="button is-light"
+                        onClick={() => setIsActive(false)}
+                      >
                         <strong>Sign up</strong>
                       </Link>
                     </>

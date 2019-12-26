@@ -10,13 +10,14 @@ const HomePage = () => {
   const isLoading = useSelector(SIsLoading);
   useEffect(() => {
     dispatch(AGetOffers());
-  }, []);
+  }, [dispatch]);
   return (
     <section className="section">
       <div className="container">
         <div className="columns is-mobile is-centered">
           <div className="column is-three-quarters">
             <h1 className="title">Lista ofert</h1>
+
             <OfferList offers={offers} isLoading={isLoading} />
           </div>
         </div>

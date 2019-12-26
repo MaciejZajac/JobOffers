@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { Link, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AGetPrivateOffers } from "../../actions/offerActions";
-import { SGetPrivateOffers, SIsAuthLoading, SIsLoading } from "../../selectors";
+import { SGetPrivateOffers, SIsLoading } from "../../selectors";
 import OfferList from "../offers/OfferList";
 
 const PrivateOffers = () => {

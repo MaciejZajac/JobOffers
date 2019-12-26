@@ -11,7 +11,7 @@ const Profile = ({ match }) => {
 
   useEffect(() => {
     dispatch(AGetCompanyProfile(companyName));
-  }, [companyName]);
+  }, [dispatch, companyName]);
 
   if (isLoading) {
     return (

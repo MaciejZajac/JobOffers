@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ALogin } from "../../actions/authActions";
 import { Form, Field } from "react-final-form";
-import { SIsLoading, SIsAuthLoading } from "../../selectors";
+import { SIsAuthLoading } from "../../selectors";
 
 const Login = () => {
   const dispatch = useDispatch();

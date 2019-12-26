@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import NewJobOffer from "./NewJobOffer";
 import PrivateOffers from "./PrivateOffers";
@@ -27,7 +27,7 @@ const Dashboard = () => {
           </div>
           <div
             className="column"
-            style={{ maxHeight: "90vh", overflowY: "scroll" }}
+            // style={{ maxHeight: "90vh", overflowY: "scroll" }}
           >
             <Switch>
               <Route exact path="/dashboard/offers" component={PrivateOffers} />

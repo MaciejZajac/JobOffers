@@ -10,20 +10,35 @@ const OfferListItem = ({ offer }) => {
           <figure className="image is-64x64">
             <img
               src="https://bulma.io/images/placeholders/128x128.png"
-              alt="Image"
+              alt="logo"
             />
           </figure>
         </div>
         <div className="media-content">
           <div className="content">
-            <div>
-              <strong>{offer.positionTitle}</strong> for{" "}
-              <strong>{offer.companyName}</strong>
-              <div>
-                <strong className="tag is-primary">{offer.experience}</strong>
+            <div className="level">
+              <div className="level-left">
+                <div>
+                  <strong>{offer.positionTitle}</strong> for{" "}
+                  <strong>{offer.companyName}</strong>
+                </div>
               </div>
-              <br />
-              <div>
+              <div className="level-right">
+                <div>
+                  <strong className="tag is-primary">{offer.experience}</strong>
+                </div>
+              </div>
+            </div>
+            <div className="level">
+              <div className="level-left">
+                <div>
+                  <strong>Strona firmy:</strong> {offer.companyPage}
+                  <div>
+                    <strong>Miasto:</strong> {offer.city}
+                  </div>
+                </div>
+              </div>
+              <div className="level-right">
                 <Link
                   to={`/profile/${offer.companyName}`}
                   className="button is-primary is-small"
@@ -31,30 +46,33 @@ const OfferListItem = ({ offer }) => {
                   <strong>About Company</strong>
                 </Link>
               </div>
-              <br />
-              <div>
-                <strong>Miasto:</strong> {offer.city}
+            </div>
+
+            <div className="level">
+              <div className="level-left">
+                <div>
+                  <strong>Opis firmy</strong>
+                  <div>{offer.companyDescription}</div>
+                  <br />
+                  <strong>Opis projektu</strong>
+                  <div>{offer.projectDescription}</div>
+                </div>
               </div>
-              <div>
-                <strong>Opis firmy</strong>
-                <div>{offer.companyDescription}</div>
+              <div className="level-right"></div>
+            </div>
+
+            <div className="level">
+              <div className="level-left"></div>
+              <div className="level-right">
+                <div>
+                  <strong>Utworzono:</strong>{" "}
+                  <span>
+                    {moment(offer.creationDate)
+                      .startOf("day")
+                      .fromNow()}
+                  </span>
+                </div>
               </div>
-              <div>
-                <strong>Utworzono:</strong>{" "}
-                <span>
-                  {moment(offer.creationDate)
-                    .locale("pl")
-                    .startOf("day")
-                    .fromNow()}
-                </span>
-              </div>
-              <div>
-                <strong>Strona firmy:</strong> <span>{offer.companyPage}</span>
-              </div>
-              <div>
-                <strong>Opis projektu</strong>
-              </div>
-              <div>{offer.projectDescription}</div>
             </div>
           </div>
         </div>

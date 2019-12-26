@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { SIsLoading } from "../../selectors";
-import { ACompanyProfile } from "../../actions/offerActions";
+import {
+  ACompanyProfile,
+  AGetCompanyProfile
+} from "../../actions/offerActions";
 
 const CompanyProfile = () => {
   const isLoading = useSelector(SIsLoading);
-  const dispatch = useDispatch(ACompanyProfile);
+  const dispatch = useDispatch();
 
   const handleSubmit = values => {
     dispatch(ACompanyProfile(values));
   };
+
+  useEffect(() => {
+    dispatch(AGetCompanyProfile());
+  }, []);
+
   return (
     <div className="container">
       <div className="columns ">
