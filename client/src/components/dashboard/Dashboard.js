@@ -2,21 +2,25 @@ import React, { useEffect } from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import NewJobOffer from "./NewJobOffer";
 import PrivateOffers from "./PrivateOffers";
+import CompanyProfile from "./CompanyProfile";
 
 const Dashboard = () => {
   return (
     <>
       <div className="container">
-        <div className="columns">
+        <div className="columns ">
           <div className="column is-one-fifth">
-            <aside class="menu">
-              <p class="menu-label">Dashboard</p>
-              <ul class="menu-list">
+            <aside className="menu">
+              <p className="menu-label">Dashboard</p>
+              <ul className="menu-list">
                 <li>
                   <Link to="/dashboard/offers">Moje oferty</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/new-offer">Nowa oferta</Link>
+                  <Link to="/dashboard/newOffer">Nowa oferta</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/companyProfile">Profil firmy</Link>
                 </li>
               </ul>
             </aside>
@@ -27,11 +31,13 @@ const Dashboard = () => {
           >
             <Switch>
               <Route exact path="/dashboard/offers" component={PrivateOffers} />
+              <Route exact path="/dashboard/newOffer" component={NewJobOffer} />
               <Route
                 exact
-                path="/dashboard/new-offer"
-                component={NewJobOffer}
+                path="/dashboard/companyProfile"
+                component={CompanyProfile}
               />
+
               <Route component={PrivateOffers} />
             </Switch>
           </div>

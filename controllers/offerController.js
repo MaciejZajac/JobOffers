@@ -1,7 +1,8 @@
 const Offer = require("../models/Offer");
 const User = require("../models/User");
+const CompanyProfile = require("../models/CompanyProfile");
 
-exports.newOffer = async (req, res, next) => {
+exports.postNewOffer = async (req, res, next) => {
   if (!req.isAuth) {
     const error = new Error("Not authenticated.");
     error.code = 401;
@@ -39,6 +40,39 @@ exports.newOffer = async (req, res, next) => {
     message: "Created new job offer.",
     offer: {
       offer: createdOffer
+    }
+  });
+};
+
+exports.postCompanyProfile = async (req, res, next) => {
+  if (!req.isAuth) {
+    const error = new Error("Not authenticated.");
+    error.code = 401;
+    throw error;
+  }
+
+  const { companyName, companyHistory, linkedInURL, companyWebsite } = req.body;
+  const user = await User.findById(req.userId);
+  if (!user) {
+    const error = new Error("There is no such email in a database.");
+    throw error;
+  }
+
+  const companyProfile = new CompanyProfile({
+    companyName,
+    companyHistory,
+    linkedInURL,
+    companyWebsite,
+    creator: user
+  });
+  const createdProfile = await companyProfile.save();
+  user.companyProfile = createdProfile;
+  await user.save();
+
+  res.status(201).json({
+    message: "Created Company's Profile",
+    companyProfile: {
+      createdProfile
     }
   });
 };

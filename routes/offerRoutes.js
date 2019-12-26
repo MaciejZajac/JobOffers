@@ -28,7 +28,25 @@ router.post(
       .notEmpty()
       .trim()
   ],
-  offerController.newOffer
+  offerController.postNewOffer
+);
+router.post(
+  "/companyProfile",
+  [
+    body("companyName", "Please enter a position Title")
+      .notEmpty()
+      .trim(),
+    body("companyHistory", "Please enter a position Title")
+      .notEmpty()
+      .trim(),
+    body("linkedInURL", "Please enter a position Title")
+      .notEmpty()
+      .trim(),
+    body("companyWebsite", "Please enter a position Title")
+      .notEmpty()
+      .trim()
+  ],
+  offerController.postCompanyProfile
 );
 router.get("/getPrivateOffers", offerController.getPrivateOffers);
 router.get("/getOffers", offerController.getOffers);

@@ -5,21 +5,33 @@ import {
   GET_OFFERS_REQUEST,
   GET_OFFERS_SUCCEDED,
   GET_OFFERS_FAILED,
-  NEWOFFER_REQUEST,
-  NEWOFFER_SUCCEDED,
-  NEWOFFER_FAILED
+  POST_NEWOFFER_REQUEST,
+  POST_NEWOFFER_FAILED,
+  POST_NEWOFFER_SUCCEDED,
+  POST_COMPANY_PROFILE_REQUEST,
+  POST_COMPANY_PROFILE_SUCCEDED,
+  POST_COMPANY_PROFILE_FAILED
 } from "../constants/offerConstants";
 
 const offerReducer = (state = {}, action) => {
   switch (action.type) {
-    case NEWOFFER_REQUEST:
+    case POST_NEWOFFER_REQUEST:
       return { ...state, isLoading: true };
-    case NEWOFFER_SUCCEDED:
+    case POST_NEWOFFER_SUCCEDED:
       return { ...state, isLoading: false };
-    case NEWOFFER_FAILED:
+    case POST_NEWOFFER_FAILED:
       return { ...state, isLoading: false };
     case GET_PRIVATE_OFFERS_REQUEST:
       return { ...state, isLoading: true };
+
+    case POST_COMPANY_PROFILE_REQUEST:
+      return { ...state, isLoading: true };
+
+    case POST_COMPANY_PROFILE_SUCCEDED:
+      return { ...state, isLoading: false };
+
+    case POST_COMPANY_PROFILE_FAILED:
+      return { ...state, isLoading: false };
 
     case GET_PRIVATE_OFFERS_SUCCEDED:
       return {

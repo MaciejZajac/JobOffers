@@ -15,7 +15,11 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Offer"
     }
-  ]
+  ],
+  companyProfile: {
+    type: Schema.Types.ObjectId,
+    ref: "CompanyProfile"
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);
