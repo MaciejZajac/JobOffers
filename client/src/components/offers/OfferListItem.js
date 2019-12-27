@@ -25,7 +25,11 @@ const OfferListItem = ({ offer }) => {
               </div>
               <div className="level-right">
                 <div>
-                  <strong className="tag is-primary">{offer.experience}</strong>
+                  <span className="tag is-warning">
+                    {moment(offer.creationDate)
+                      .startOf("day")
+                      .fromNow()}
+                  </span>
                 </div>
               </div>
             </div>
@@ -39,12 +43,20 @@ const OfferListItem = ({ offer }) => {
                 </div>
               </div>
               <div className="level-right">
-                <Link
-                  to={`/profile/${offer.companyName}`}
-                  className="button is-primary is-small"
-                >
-                  <strong>About Company</strong>
-                </Link>
+                <div>
+                  <div>
+                    <strong className="tag is-primary">
+                      {offer.experience}
+                    </strong>
+                  </div>
+                  <br />
+                  <Link
+                    to={`/profile/${offer.companyName}`}
+                    className="button is-primary is-small"
+                  >
+                    <strong>About Company</strong>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -56,21 +68,6 @@ const OfferListItem = ({ offer }) => {
                   <br />
                   <strong>Opis projektu</strong>
                   <div>{offer.projectDescription}</div>
-                </div>
-              </div>
-              <div className="level-right"></div>
-            </div>
-
-            <div className="level">
-              <div className="level-left"></div>
-              <div className="level-right">
-                <div>
-                  <strong>Utworzono:</strong>{" "}
-                  <span>
-                    {moment(offer.creationDate)
-                      .startOf("day")
-                      .fromNow()}
-                  </span>
                 </div>
               </div>
             </div>
