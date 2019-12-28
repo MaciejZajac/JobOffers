@@ -1,0 +1,13 @@
+.button {
+  &__extend {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+    transition: background-color 0.25s ease-in-out;
+    &:hover {
+      background-color: $green;
+    }
+  }
+}
