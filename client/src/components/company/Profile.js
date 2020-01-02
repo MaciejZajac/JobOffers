@@ -28,18 +28,47 @@ const Profile = ({ match }) => {
   return (
     <div className="container">
       {companyProfile ? (
-        <div className="columns">
-          <div className="column is-half">
-            <strong>Company name:</strong> {companyProfile.companyName}
-            <br />
-            <strong>Company website:</strong> {companyProfile.companyWebsite}
-            <br />
-            <strong>Company linkedin:</strong> {companyProfile.linkedInURL}
-            <br />
-            <strong>Company history:</strong> {companyProfile.companyHistory}
-            <br />
+        <>
+          <div className="columns">
+            <div className="column">
+              <div className="title">Profil firmy</div>
+              <div>
+                <strong>Company name:</strong>
+                <br />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                ac porta leo. Integer nec facilisis magna. In vehicula malesuada
+                erat, quis egestas urna. Quisque sit amet lectus ut neque
+                consequat molestie. Donec quam felis, condimentum sed faucibus
+                vitae, sollicitudin et metus. Donec et bibendum enim.
+              </div>
+              <br />
+              <div>
+                <strong>Company website:</strong> <br /> www.asd.pl
+              </div>
+              <br />
+              <div>
+                <strong>Company linkedin:</strong> {companyProfile.linkedInURL}
+              </div>
+              <strong>Company history:</strong> Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit. Nulla ac porta leo. Integer nec
+              facilisis magna. In vehicula malesuada erat, quis egestas urna.
+              Quisque sit amet lectus ut neque consequat molestie. Donec quam
+              felis, condimentum sed faucibus vitae, sollicitudin et metus.
+              Donec et bibendum enim.
+              <br />
+            </div>
+            <div className="column is-half">
+              <div>
+                <figure class="image is-250x250">
+                  <img
+                    src="https://bulma.io/images/placeholders/128x128.png"
+                    alt="Image"
+                  />
+                </figure>
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <div>Nie ma takiej firmy</div>
       )}
